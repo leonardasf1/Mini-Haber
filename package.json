@@ -1,7 +1,7 @@
 {
-  "name": "podcast-app",
+  "name": "mini-haber",
   "version": "1.0.0",
-  "description": "Podcast App",
+  "description": "mini Haber",
   "main": "app.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
@@ -11,7 +11,7 @@
     "js",
     "javascript"
   ],
-  "author": "ya <ya@mail.ya>",
+  "author": "leonardasf1 <leonardasf1@yandex.ru>",
   "license": "ISC",
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
