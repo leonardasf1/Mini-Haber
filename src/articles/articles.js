@@ -74,8 +74,8 @@ function toPage(e) {
     // plugImg(article)
     byId('list').innerHTML = `
     <div id="page-article">
-      <div class="page-article__icon"><img src="${article.img}" alt=""></div>
       <div class="page-article__title"><h3>${article.title}</h3></div>
+      <div class="page-article__icon"><img src="${article.img}" alt=""></div>
       <div class="page-article__text">${article.text}</div>
       <div><span style="float: right">${categories[article.categ]}</span></div>
       <div>

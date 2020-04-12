@@ -15,11 +15,11 @@ export class Article {
 const formHTML = `
 <form class="mui-form" id="form">
   <div class="mui-textfield mui-textfield--float-label">
-    <input type="text" id="article-title-input" required maxlength="90">
+    <input type="text" id="article-title-input" required minlength="9" maxlength="90">
     <label for="article-title-input">Заголовок</label>
   </div>
   <div class="mui-textfield mui-textfield--float-label">
-    <textarea id="article-text-input" required minlength="300" rows="11"></textarea>
+    <textarea id="article-text-input" required minlength="300" maxlength="2560" rows="11"></textarea>
     <label for="article-text-input">Текст публикации</label>
   </div>
   <div class="mui-textfield mui-textfield--float-label">

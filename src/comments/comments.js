@@ -69,7 +69,7 @@ function template(comment) {
 const commentForm = `
 <form class="mui-form" id="comment-form">
   <div class="mui-textfield mui-textfield--float-label">
-    <textarea id="comment-text-input" maxlength="500"></textarea>
+    <textarea id="comment-text-input" minlength="9" maxlength="256"></textarea>
     <label for="comment-text-input">Оставить комментарий</label>
   	<div class="error" id="error"></div>
   </div>
