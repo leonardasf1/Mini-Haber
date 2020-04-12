@@ -41,11 +41,6 @@ export class Comment {
     .insertAdjacentHTML('beforeend', commentForm)
     byId('comment-form')
     .addEventListener('submit', handleForm)
-    // byId('comment-text-input')
-    // .addEventListener('input', () => {
-    //   byId('comment-submit')
-    //   .disabled = !isValid(byId('comment-text-input').value)
-    // })
   }
 
 }
@@ -53,7 +48,6 @@ export class Comment {
 function byId(id) { return document.getElementById(id) }
 
 function renderList(response) {
-	// let comments
 	App.render(response, byId('pageComments'), template)
 }
 
@@ -100,16 +94,6 @@ function handleForm(e) {
     })
   }
 }
-
-// function create(comment) {
-//   return fetch(`https://podcast-questions-ap.firebaseio.com/comments.json?auth=${sessionStorage.idToken}`, {
-//     method: 'POST',
-//     body: JSON.stringify(comment),
-//     headers: {
-//       'Content-Type': 'application/json'
-//     }
-//   })
-// }
 
 function getMyNewComment(comment) {
 	byId('pageComments')

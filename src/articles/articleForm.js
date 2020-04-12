@@ -48,9 +48,6 @@ function openForm() {
     App.createModal(formHTML, 'article-form')
     setCategories()
     byId('form').addEventListener('submit', handleForm)
-    // byId('article-text-input').addEventListener('input', () => {
-    //   byId('submit').disabled = !isValid(byId('article-text-input').value)
-    // })
   }
 }
 
@@ -87,16 +84,3 @@ function handleForm(event) {
     })
   }
 }
-
-// function create(article) {
-//   return fetch(`https://podcast-questions-ap.firebaseio.com/articles.json?auth=${sessionStorage.idToken}`, {
-//     method: 'POST',
-//     body: JSON.stringify(article),
-//     headers: {
-//       'Content-Type': 'application/json'
-//     }
-//   })
-  // .then(response => {
-  //   article.id = response.name
-  // })
-// }

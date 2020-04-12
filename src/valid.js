@@ -5,9 +5,6 @@ export function isValid(value, form) {
 		value.includes("'")) {
 		byId('error').innerText = 'Некорректные символы!'
 		return false
-		// if (form == 'comment' || 'article' || 'article-text') {
-		// 	byId('error').innerText = 'Некорректные символы!'
-		// }
 	}
 
 	if (form == 'comment' || form == 'article') {

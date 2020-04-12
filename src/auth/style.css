@@ -20,7 +20,6 @@
 	.block__content a {
 		color: #3d71bd;
 		transition: color .15s ease-out;
-		/*text-decoration: none;*/
 	}
 		.block__content a:hover {
 			color: #e00;

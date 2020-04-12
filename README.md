@@ -8,5 +8,10 @@ login with another services,
 lost password,
 routing,
 pagination,
-search
+search,
+views,
+show pass,
+formating inputText,
+pattern tel
+
 </pre>

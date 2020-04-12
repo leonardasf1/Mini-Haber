@@ -12,11 +12,6 @@ export class Articles {
       .then(response => rend(response))
     }
 
-    // static renderAuthList() {
-    //     fetch(`https://podcast-questions-ap.firebaseio.com/articles.json?auth=${sessionStorage.idToken}`)
-    //     .then(response => response.json())
-    //     .then(response => render(response, toCard))
-    // }
     static setCategories() {
       let ul = ""
       for (let [key, value] of Object.entries(categories)) {
@@ -31,8 +26,8 @@ export class Articles {
 function rend(response) {
     articles = App.render(response, byId('list'), toCard)
     if (response && !response.error) {
-      document.querySelectorAll('.list-article__title a')
-      .forEach(i => i.addEventListener('click', toPage))
+      document.querySelectorAll('.list-article')
+      .forEach(i => i.addEventListener('click', toPage, true))
     }
 }
 
@@ -57,7 +52,6 @@ export const categories = {
 }
 
 function toCard(article) {
-    // plugImg(article)
     return `
     <div class="list-article">
       <div class="list-article__icon"><img src="${article.img}" alt=""></div>
@@ -70,8 +64,11 @@ function toCard(article) {
 }
 
 function toPage(e) {
-    let article = articles.find(i => i.id == e.target.getAttribute('value'))
-    // plugImg(article)
+    let article = articles.find(
+      i => i.id == e.currentTarget
+      .querySelector('a')
+      .getAttribute('value')
+    )
     byId('list').innerHTML = `
     <div id="page-article">
       <div class="page-article__title"><h3>${article.title}</h3></div>
@@ -86,9 +83,6 @@ function toPage(e) {
       <div id="pageComments"></div>
     </div>
     `
+    window.scroll(0, 0)
     Comment.getLast(article.id)
 }
-
-// function plugImg(article) {
-//     if (!article.img) article.img = 'img_plug.png'
-// }

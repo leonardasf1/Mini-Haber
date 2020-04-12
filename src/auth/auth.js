@@ -2,7 +2,7 @@ import {loginHTML, signupHTML} from './html'
 import {App} from '../app'
 import {Rest} from '../fetch'
 import {Comment} from '../comments/comments'
-import {validAuth, isValidAuth} from '../valid'
+import {isValidAuth} from '../valid'
 
 function byId(id) { return document.getElementById(id) }
 
@@ -40,9 +40,6 @@ function openModalLogin() {
 function openModalSignup() {
   App.createModal(signupHTML, 'block__content')
 
-  document.querySelectorAll('.form__group input').forEach(function(i) {
-    i.addEventListener('blur', validAuth)
-  })
   byId('signup-form')
   .addEventListener('submit', signupFormHandler)
 
@@ -58,8 +55,8 @@ function loginFormHandler(event) {
   let email = byId('email')
   let password = byId('password')
 
-  // if (isValid(email, 'email') &&
-  //     isValid(password, 'password')) {
+  if (isValidAuth(email.value, 'email') &&
+      isValidAuth(password.value, 'password')) {
 
     const btn = event.target.querySelector('button')
     btn.disabled = true
@@ -82,8 +79,9 @@ function loginFormHandler(event) {
         setBtnSession()
       }
     })
-  // }
+  }
 }
+
 function setBtnSession() {
   byId('button_login').style.display = 'none'
   byId('button_signup').style.display = 'none'
@@ -92,7 +90,6 @@ function setBtnSession() {
   byId('button_logout').style.display = 'inline'
   byId('button_logout').addEventListener('click', Auth.logout)
   byId('button_article').style.display = 'inline'
-
 }
 
 function errorHandler(item, text) {
@@ -104,7 +101,6 @@ function errorHandler(item, text) {
 
 function signupFormHandler(e) {
   e.preventDefault()
-  // if (byId('signEmail').value && byId('pas').value)
   let email = byId('signEmail').value
   let pas = byId('pas').value
   let pas2 = byId('pas2').value
