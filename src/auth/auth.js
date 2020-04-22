@@ -24,7 +24,7 @@ export class Auth {
 
 }
 
-function openModalLogin() {
+export function openModalLogin() {
   App.createModal(loginHTML, 'block__content')
 
   byId('login-form')
@@ -32,7 +32,6 @@ function openModalLogin() {
 
 	byId('a_signup')
 	.addEventListener('click', function(e) {
-		mui.overlay('off')
 		openModalSignup()
 	})
 }
@@ -45,7 +44,6 @@ function openModalSignup() {
 
 	byId('a_login')
 	.addEventListener('click', function(e) {
-		mui.overlay('off')
 		openModalLogin()
 	})
 }
@@ -75,7 +73,7 @@ function loginFormHandler(event) {
       	sessionStorage.setItem("email", data.email)
         sessionStorage.setItem("timer", Date.now() + data.expiresIn * 1000)
         mui.overlay('off')
-        if (byId('page-article')) Comment.renderForm()
+        if (byId('page-article') && !byId('comment-form')) Comment.renderForm()
         setBtnSession()
       }
     })

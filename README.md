@@ -3,7 +3,7 @@ JS MUI Firebase REST
 <pre>
 todo: 
 profile,
-delete and edit publications,
+delete,
 login with another services,
 lost password,
 routing,
@@ -11,7 +11,6 @@ pagination,
 search,
 views,
 show pass,
-formating inputText,
 pattern tel
 
 </pre>

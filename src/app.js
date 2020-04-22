@@ -18,7 +18,6 @@ window.addEventListener('load', function() {
 export class App {
 
   static createModal(template, className) {
-      mui.overlay('off')
       const modal = document.createElement('div')
       modal.classList.add(className)
       modal.innerHTML = template
@@ -35,18 +34,24 @@ export class App {
   }
 
   static render(response, where, template) {
-      if (response && response.error) {
-          App.handleError(response, where)
-      } else {
+    if (response && response.error) {
+      App.handleError(response, where)
+    } else {
       let arr = response ? Object.keys(response)
       .map(key => ({ ...response[key], id: key })) : []
 
-      where.innerHTML = arr.map(template).join('')
-      return arr
+      if (where == byId('pageComments')) {
+        where.innerHTML = arr.map(template).join('')
+      } else {
+        where.innerHTML = arr.map(template).reverse().join('')
       }
+      return arr
+    }
   }
 
 }
+
+function byId(id) { return document.getElementById(id) }
 
 jQuery(function($) {
   var $bodyEl = $('body'),

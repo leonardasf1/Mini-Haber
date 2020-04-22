@@ -4,7 +4,6 @@
 * {
     box-sizing: border-box;
 }
-a { color: #000; }
 a:hover {
   text-decoration: none;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
@@ -37,6 +36,8 @@ button {
   left: 0;
   z-index: 2;
   transition: left 0.2s;
+  box-shadow: #000 0 0 17px 0;
+
 }
 
 #sidedrawer {
@@ -50,6 +51,7 @@ button {
   background-color: #fff;
   transition: transform 0.2s;
 }
+  #sidedrawer a { color: #000; }
 
 #content-wrapper {
   min-height: 100%;

@@ -80,7 +80,8 @@ function handleForm(e) {
   let email = sessionStorage.email
   let text = byId('comment-text-input').value.trim()
   let date = new Date().toJSON()
-  byId('comment-text-input').addEventListener('focus', () => {
+  byId('comment-text-input')
+  .addEventListener('focus', () => {
   	byId('error').innerText = ''
   })
   if (isValid(text, 'comment')) {

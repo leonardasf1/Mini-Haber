@@ -7,30 +7,59 @@ import {isValid} from '../valid'
 export class Article {
 
   static initForm() {
-    byId('button_article').addEventListener('click', openForm)
+    byId('button_article')
+    .addEventListener('click', openForm)
+  }
+
+  static initUpdateForm(article) {
+    byId('btn_Article_Update')
+    .addEventListener('click', () => {
+      openUpdateForm(article)
+    })
   }
 
 }
 
 const formHTML = `
+<div class="article-form">
 <form class="mui-form" id="form">
   <div class="mui-textfield mui-textfield--float-label">
-    <input type="text" id="article-title-input" required minlength="9" maxlength="90">
+    <input
+    type="text"
+    id="article-title-input"
+    required
+    minlength="9"
+    maxlength="90"
+    value="">
     <label for="article-title-input">Заголовок</label>
   </div>
+
   <div class="mui-textfield mui-textfield--float-label">
-    <textarea id="article-text-input" required minlength="300" maxlength="2560" rows="11"></textarea>
+    <textarea
+    type="text"
+    id="article-text-input"
+    required
+    minlength="300"
+    maxlength="2560"
+    rows="11"></textarea>
     <label for="article-text-input">Текст публикации</label>
   </div>
+
   <div class="mui-textfield mui-textfield--float-label">
-    <input type="text" id="article-img-input" maxlength="99">
+    <input
+    type="text"
+    id="article-img-input"
+    maxlength="99"
+    value="">
     <label for="article-img-input">Адрес картинки</label>
   </div>
+
   <div class="mui-select">
     <select id="article-categ-input">
     </select>
     <label>Выберите категорию</label>
   </div>
+
   <button
    id="submit"
    type="submit"
@@ -38,17 +67,53 @@ const formHTML = `
    > Опубликовать</button>
   <div class="error" id="error"></div>
 </form>
+</div>
 `
+function setInput() {
+  const arr = ['categ', 'text', 'title', 'img']
+  arr.map(function(i) {
+    if (i == 'text') {
+      byId(`article-${i}-input`)
+      .innerHTML = `${localStorage.getItem(i)?localStorage.getItem(i):""}`
+    } else {
+      byId(`article-${i}-input`)
+      .value = `${localStorage.getItem(i)?localStorage.getItem(i):""}`
+    }
+    byId(`article-${i}-input`)
+    .addEventListener('blur', (e) => {
+      localStorage.setItem(i, e.target.value)
+    })
+  })
+}
 
 function byId(id) { return document.getElementById(id) }
 
 function openForm() {
-  if (sessionStorage.timer < Date.now()) Auth.logout()
-  else if (sessionStorage.idToken) {
-    App.createModal(formHTML, 'article-form')
-    setCategories()
-    byId('form').addEventListener('submit', handleForm)
-  }
+  byId('list').innerHTML = formHTML
+  setCategories()
+  setInput()
+  byId('form')
+  .addEventListener('submit', (e) => {
+    e.preventDefault()
+    handleForm()
+  })
+}
+
+function openUpdateForm(article) {
+  const article_update = article
+  localStorage.setItem(`categ`, article_update.categ)
+  localStorage.setItem(`title`, article_update.title)
+  localStorage.setItem(`text`, article_update.text.replace(/<br>/g, "\n"))
+  localStorage.setItem(`img`, article_update.img)
+
+  byId('list').innerHTML = formHTML
+  setCategories()
+  setInput()
+  byId('form')
+  .addEventListener('submit', (e) => {
+    e.preventDefault()
+    handleForm(article_update)
+  })
 }
 
 function setCategories() {
@@ -59,28 +124,40 @@ function setCategories() {
   byId('article-categ-input').innerHTML = html
 }
 
-function handleForm(event) {
-  event.preventDefault()
+function handleForm(article_update = false) {
+
   let email = sessionStorage.email
-  let text = byId('article-text-input').value.trim()
+  let text = byId('article-text-input').value
   let date = new Date().toJSON()
   let title = byId('article-title-input').value
   let categ = byId('article-categ-input').value
   let img = byId('article-img-input').value
-  byId('article-text-input').addEventListener('focus', () => {
+
+  const arr = ['text', 'title', 'img']
+  arr.map(function(i) {
+    byId(`article-${i}-input`)
+    .addEventListener('focus', (e) => {
     byId('error').innerText = ''})
-  byId('article-title-input').addEventListener('focus', () => {
-    byId('error').innerText = ''})
-  byId('article-img-input').addEventListener('focus', () => {
-    byId('error').innerText = ''})
+  })
 
   if (isValid(text, 'article-text') &&
       isValid(title, 'article') &&
       isValid(img, 'article')) {
-    const article = { email, text, date, title, categ, img }
     byId('submit').disabled = true
-    Rest.new(article, 'articles').then(() => {
-      mui.overlay('off')
-    })
+    text = text.replace(/\n/g, "<br>")
+
+    const article = { email, text, date, title, categ, img }
+
+    if (article_update) {
+      Rest.update(article, 'articles', article_update.id)
+      .then(postPub(article))
+    }
+    else Rest.new(article, 'articles')
+      .then(postPub(article))
   }
+}
+
+function postPub(article) {
+    byId('list').innerHTML = Articles.page(article)
+    localStorage.clear()
 }
