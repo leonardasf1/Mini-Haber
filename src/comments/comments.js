@@ -53,11 +53,11 @@ function renderList(response) {
 
 function template(comment) {
 	return `
-	<li>
-		<div class="mui--divider-bottom">${comment.text}</div>
+	<div>
+		<div>${comment.text}</div>
 		${comment.email.split("@")[0]}
 		${new Date(comment.date).toLocaleDateString()}
-	</li>`
+	</div>`
 }
 
 const commentForm = `

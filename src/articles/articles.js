@@ -29,7 +29,7 @@ export class Articles {
       <div class="page-article__title"><h3>${article.title}</h3></div>
       <div class="page-article__icon"><img src="${article.img}" alt=""></div>
       <div class="page-article__text">${article.text}</div>
-      <div class="page-article__categ"><span style="float: right">${categories[article.categ]}</span></div>
+      <div class="page-article__categ">${categories[article.categ]}</div>
       <div class="page-article__author">
         <span>${article.email.split("@")[0]}</span>
         <span>${new Date(article.date).toLocaleDateString()}</span>
@@ -77,7 +77,7 @@ function toCard(article) {
       <div class="list-article__title"><h3>
         <a value="${article.id}">${article.title}</a></h3></div>
       <div class="list-article__text">${article.text}</div>
-      <div><span style="float: right">${categories[article.categ]}</span></div>
+      <div class="list-article__categ">${categories[article.categ]}</div>
     </div>
     `
 }

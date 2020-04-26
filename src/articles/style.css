@@ -33,10 +33,14 @@
     }
     .list-article__text {
       text-align: center;
-      color: #777;
+      color: #000;
       height: 177px;
       overflow: hidden;
       margin: 0 0 10px 0;
+    }
+    .list-article__categ {
+      float: right;
+      color: #777;
     }
 
 #page-article {
@@ -59,9 +63,30 @@
     margin: 0 0 20px 0;
   }
   .page-article__text {
-    color: #777;
+    color: #000;
     margin: 0 0 10px 0;
+    column-width: 300px;
   }
   .page-article__author > * {
     margin-right: 2rem;
+    color: #777;
+  }
+  .page-article__categ {
+    float: right;
+    color: #777;
+  }
+#pageComments {
+  display: flex;
+  flex-wrap: wrap;
+}
+#pageComments > div {
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+  color: #777;
+  width: 300px;
+}
+  #pageComments > div:hover {background: #d3e8fd;}
+  #pageComments > div > div {
+    color: #000;
+    font-size: 16px;
   }
