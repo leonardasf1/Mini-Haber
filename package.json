@@ -2,15 +2,12 @@
   "name": "mini-haber",
   "version": "1.0.0",
   "description": "mini Haber",
+  "private": true,
   "main": "app.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production"
   },
-  "keywords": [
-    "js",
-    "javascript"
-  ],
   "author": "leonardasf1 <leonardasf1@yandex.ru>",
   "license": "ISC",
   "devDependencies": {
@@ -21,5 +18,6 @@
     "webpack": "^4.42.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
-  }
+  },
+  "dependencies": {}
 }

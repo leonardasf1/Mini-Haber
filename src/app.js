@@ -6,6 +6,7 @@ import {validAuth} from './valid'
 import './style.css'
 import './auth/style.css'
 import './articles/style.css'
+import {footer} from './assets/footer'
 
 window.addEventListener('load', function() {
     Articles.renderArticles()
@@ -13,6 +14,7 @@ window.addEventListener('load', function() {
     Articles.setCategories()
     Comment.setSideComments()
     Article.initForm()
+    byId('footer').innerHTML = footer
 })
 
 export class App {

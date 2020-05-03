@@ -184,7 +184,14 @@ button {
   color: #fff;
   text-decoration: underline;
 }
-
+.footer {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+.footer > * {
+  margin-right: 1rem;
+}
 #comment-form {
   padding: 1rem
 }
