@@ -1,4 +1,3 @@
-import {Auth} from '../auth/auth'
 import {App} from '../app'
 import {Rest} from '../fetch'
 import {Comment} from '../comments/comments'
