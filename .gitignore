@@ -1,6 +1,7 @@
 src/fetch.js
 src/other/
 public/
+.idea/
 
 # Logs
 logs
@@ -10,6 +11,7 @@ yarn-debug.log*
 yarn-error.log*
 firebase-debug.log*
 .firebaserc
+.gitignore
 
 # Firebase cache
 .firebase/
